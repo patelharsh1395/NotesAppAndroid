@@ -7,11 +7,11 @@
 
         <item android:id="@+id/notes"
             android:icon="@drawable/notes"
-            android:title="Employees"
-            android:iconTint="@color/colorPrimary"/>
+            android:title="Notes"
+            android:iconTint="@color/orange"/>
         <item android:id="@+id/note_add"
             android:icon="@drawable/note_add"
-            android:title="Add Employee"
+            android:title="Add Notes"
             android:iconTint="@color/colorPrimary"
             />
         <item android:id="@+id/about_us"

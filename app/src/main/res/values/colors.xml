@@ -2,12 +2,12 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#CE0F4F</color>
     <color name="Purple">#7b68ee</color>
     <color name="Black">#313131</color>
     <color name="pink">#FF1493</color>
-    <color name="yello">#FFEE4C</color>
-    <color name="green">#92fe14</color>
+    <color name="yello">#82B88207</color>
+    <color name="green">#92FE14</color>
     <color name="orange">#FFA500</color>
     <color name="gery">#797980</color>
     <color name="light_grey">#8DCCCCCC</color>
