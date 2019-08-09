@@ -16,6 +16,9 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
+import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
+
 import DataBase.SqlHelperClass;
 
 
@@ -25,9 +28,15 @@ public class NavigationDrawerAct extends AppCompatActivity{
 
     Toolbar customToolBar;
     NavigationView nav_view;
+    DrawerLayout nav_drawer;
+
     AddNotes addNotes;
     NotesList notesList;
-    DrawerLayout nav_drawer;
+    AboutUsFragment aboutUsFragment;
+    ContactUsFragment contactUsFragment;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,9 @@ public class NavigationDrawerAct extends AppCompatActivity{
         this.addNotes = new AddNotes(this, sqldb);
         this.notesList = new NotesList();
 
+        fragmentManager = getSupportFragmentManager();
+        this.fragmentTransaction = fragmentManager.beginTransaction();
+
         this.nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -57,18 +69,41 @@ public class NavigationDrawerAct extends AppCompatActivity{
                 switch(menuItem.getItemId())
                 {
                     case R.id.notes :
-
+                        NavigationDrawerAct.this.nav_drawer.closeDrawer(Gravity.START);
                         ft.replace(R.id.frame_layout, notesList);
                         ft.commit();
 
                         break;
 
                     case R.id.note_add :
-
+                        NavigationDrawerAct.this.nav_drawer.closeDrawer(Gravity.START);
                         ft.replace(R.id.frame_layout, addNotes);
                         ft.commit();
+                        break;
 
-
+                    case R.id.about_us :
+                        if(aboutUsFragment == null)
+                        {
+                            aboutUsFragment = new AboutUsFragment();
+                        }
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout, aboutUsFragment);
+                        fragmentTransaction.commit();
+                        actionbar.setTitle("About US");
+                        NavigationDrawerAct.this.nav_drawer.closeDrawer(Gravity.START, true);
+                        Toast.makeText(NavigationDrawerAct.this, "About US" , Toast.LENGTH_LONG).show();
+                        break;
+                    case R.id.contact_us :
+                        if(contactUsFragment == null)
+                        {
+                            contactUsFragment = new ContactUsFragment();
+                        }
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout, contactUsFragment);
+                        fragmentTransaction.commit();
+                        actionbar.setTitle("Contact Us");
+                        NavigationDrawerAct.this.nav_drawer.closeDrawer(Gravity.START, true);
+                        Toast.makeText(NavigationDrawerAct.this, "Contact Us" , Toast.LENGTH_LONG).show();
                         break;
 
                 }
@@ -77,7 +112,12 @@ public class NavigationDrawerAct extends AppCompatActivity{
         });
 
 
+
+
+
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
